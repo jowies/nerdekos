@@ -13,9 +13,9 @@ curl https://install.meteor.com/ | sh
 ```
 
 Clone repo:
-'''bash
+```bash
 git clone https://github.com/YumYumNoodle/nerdekos.git
-'''
+```
 
 Run nerdekos:
 
