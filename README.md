@@ -12,7 +12,12 @@ On Linux/macOS, use this line:
 curl https://install.meteor.com/ | sh
 ```
 
-Run it:
+Clone repo:
+'''bash
+git clone https://github.com/YumYumNoodle/nerdekos.git
+'''
+
+Run nerdekos:
 
 ```bash
 cd nerdekos
