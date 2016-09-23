@@ -2,7 +2,7 @@
 
 ##Quick start
 
-Install Meteor:
+1. Install Meteor:
 
 On Windows, simply go to https://www.meteor.com/install and use the Windows installer.
 
@@ -12,12 +12,12 @@ On Linux/macOS, use this line:
 curl https://install.meteor.com/ | sh
 ```
 
-Clone repo:
+2. Clone repo:
 ```bash
 git clone https://github.com/YumYumNoodle/nerdekos.git
 ```
 
-Run nerdekos:
+3. Run nerdekos:
 
 ```bash
 cd nerdekos
