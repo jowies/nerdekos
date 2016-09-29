@@ -28,9 +28,9 @@ export default class HomeLayout extends React.Component {
         >
           <div className="mdl-layout__header-row" style={{ paddingLeft: 16 }}>
             <i className="material-icons mdl-color-text--red-A700">favorite</i>
-            <span className="mdl-layout-title mdl-color-text--grey-50">
-              Nerdekos
-            </span>
+            <span className="mdl-layout-title mdl-color-text--grey-50"><a href="/kart">
+              NERDEKOS<span style={{ fontSize: 12 }}>&nbsp; BY JOWIE</span>
+            </a></span>
             <div className="mdl-layout-spacer"></div>
             <nav className="mdl-navigation mdl-layout--large-screen-only">
               <a className="mdl-navigation__link" href="">Link</a>
