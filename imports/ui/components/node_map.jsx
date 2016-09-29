@@ -106,5 +106,5 @@ NodeMap.propTypes = {
   nodes: React.PropTypes.object,
   edges: React.PropTypes.object,
   click: React.PropTypes.func,
-  height: React.PropTypes.number
+  height: React.PropTypes.number,
 };

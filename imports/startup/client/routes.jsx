@@ -7,12 +7,12 @@ import Welcome from '../../ui/pages/welcome.jsx';
 
 FlowRouter.route('/', {
   action() {
-    mount(HomeLayout, { content: <PublicContainer /> });
+    mount(Welcome);
   },
 });
 
 FlowRouter.route('/kart', {
   action() {
-    mount(Welcome);
+    mount(HomeLayout, { content: <PublicContainer /> });
   },
 });

@@ -7,7 +7,7 @@ import Home from '../pages/home.jsx';
 const PublicContainer = createContainer(() => {
   const peopleHandle = Meteor.subscribe('people.all');
   const relationshipsHandle = Meteor.subscribe('relationships.all');
-  const loading = !peopleHandle.ready && relationshipsHandle.ready;
+  const loading = !peopleHandle.ready && !relationshipsHandle.ready;
   return {
     loading,
     connected: Meteor.status().connected,

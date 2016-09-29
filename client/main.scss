@@ -15,6 +15,14 @@ html, body, div, main {
   align-items: center;
 }
 
+.center-text {
+  text-align: center;
+}
+
+.center {
+  margin: auto;
+}
+
 #loadingBar {
   top:0px;
   left:0px;
@@ -41,4 +49,62 @@ html, body, div, main {
 
 .inner {
   align-self: center;
+}
+
+.welcome-container {
+  width: 400px;
+  max-width: 80%;
+}
+
+.style-5 input[type="text"] {
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 1px rgb(66,66,66);
+  -webkit-box-shadow: inset 1px 1px 2px 0 #707070;
+  -moz-box-shadow: inset 1px 1px 2px 0 #707070;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  -webkit-transition: box-shadow 0.3s;
+  -moz-transition: box-shadow 0.3s;
+  -o-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+}
+.style-5 input[type="text"]:focus, .style-5 input[type="text"].focus {
+  -webkit-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+  -moz-box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+  box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  -ms-border-radius: none;
+  -o-border-radius: none;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+
+
+.submit {
+  color: #fff;
+  background-color: #212121;
+  margin-top: 10px;
+}
+
+.submit:hover,
+.submit.hover {
+  background-color: #272727;
 }
