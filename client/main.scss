@@ -1,9 +1,9 @@
 /* CSS declarations go here d*/
 body{
-  background-color: rgb(245,245,245);
+  background-color: rgb(66,66,66);
 }
 html, body, div, main {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: 'PT Sans', 'Roboto', 'Helvetica', sans-serif;
   height: '100%';
 }
 
@@ -15,3 +15,30 @@ html, body, div, main {
   align-items: center;
 }
 
+#loadingBar {
+  top:0px;
+  left:0px;
+  background-color:rgba(200,200,200,0.8);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity:1;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  width: 33.33%;
+  height: 500px;
+  background: silver;
+}
+
+.inner {
+  align-self: center;
+}

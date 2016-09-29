@@ -8762,7 +8762,7 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 .mdl-spinner__layer-1 {
   border-color: rgb(66,165,245); }
   .mdl-spinner--single-color .mdl-spinner__layer-1 {
-    border-color: rgb(63,81,181); }
+    border-color: rgb(33,33,33); }
   .mdl-spinner.is-active .mdl-spinner__layer-1 {
     -webkit-animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-1-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
             animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-1-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
@@ -8770,7 +8770,7 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 .mdl-spinner__layer-2 {
   border-color: rgb(244,67,54); }
   .mdl-spinner--single-color .mdl-spinner__layer-2 {
-    border-color: rgb(63,81,181); }
+    border-color: rgb(33,33,33); }
   .mdl-spinner.is-active .mdl-spinner__layer-2 {
     -webkit-animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-2-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
             animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-2-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
@@ -8778,7 +8778,7 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 .mdl-spinner__layer-3 {
   border-color: rgb(253,216,53); }
   .mdl-spinner--single-color .mdl-spinner__layer-3 {
-    border-color: rgb(63,81,181); }
+    border-color: rgb(33,33,33); }
   .mdl-spinner.is-active .mdl-spinner__layer-3 {
     -webkit-animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-3-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
             animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-3-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
@@ -8786,7 +8786,7 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 .mdl-spinner__layer-4 {
   border-color: rgb(76,175,80); }
   .mdl-spinner--single-color .mdl-spinner__layer-4 {
-    border-color: rgb(63,81,181); }
+    border-color: rgb(33,33,33); }
   .mdl-spinner.is-active .mdl-spinner__layer-4 {
     -webkit-animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-4-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
             animation: mdl-spinner__fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, mdl-spinner__layer-4-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }

@@ -2,3 +2,4 @@ node_modules/
 mup.json
 mup_prod.json
 mup_test.json
+mup.js

@@ -7,21 +7,19 @@ export default class Home extends React.Component {
     super(props);
     this.edges = new vis.DataSet();
     this.nodes = new vis.DataSet();
+    this.click = this.click.bind(this);
   }
 
   componentDidMount() {
     this.props.relationships.forEach((relationship) => {
-      console.log(relationship);
       const edge = {
         id: relationship._id,
         from: relationship.people[0],
         to: relationship.people[1],
       };
-      console.log(edge);
       this.edges.add(edge);
     });
     this.props.people.forEach((person) => {
-      console.log(person);
       const node = {
         id: person._id,
         label: person.name,
@@ -33,7 +31,6 @@ export default class Home extends React.Component {
   componentDidUpdate() {
     this.props.relationships.forEach((relationship) => {
       if (!this.edges.get(relationship._id)) {
-        console.log(relationship);
         const edge = {
           id: relationship._id,
           from: relationship.people[0],
@@ -44,7 +41,6 @@ export default class Home extends React.Component {
     });
     this.props.people.forEach((person) => {
       if (!this.nodes.get(person._id)) {
-        console.log(person);
         const node = {
           id: person._id,
           label: person.name,
@@ -54,9 +50,41 @@ export default class Home extends React.Component {
     });
   }
 
+  getHeight() {
+    if ((window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth) >= 840) {
+      return 64;
+    }
+    return 56;
+  }
+
+  click(network, data) {
+    if (data.nodes[0]) {
+      network.focus(data.nodes[0], {
+        scale: 0.95,
+        animation: {
+          duration: 500,
+          easingFunction: 'easeInOutQuad',
+        },
+      });
+    } else {
+      network.fit({
+        animation: {
+          duration: 500,
+          easingFunction: 'easeInOutQuad',
+        },
+      });
+    }
+  }
+
   render() {
     return (
-        this.props.loading ? <p>Loading..</p> : <NodeMap nodes={this.nodes} edges={this.edges} />
+      <div
+        className=""
+      >
+        {this.props.loading ? <p>Loading..</p> : <NodeMap height={this.getHeight()} click={this.click} nodes={this.nodes} edges={this.edges} />}
+      </div>
     );
   }
 }
