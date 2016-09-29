@@ -1,6 +1,7 @@
 import React from 'react';
 import { upgrade, downgrade } from '../helpers/upgrade.jsx';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Session } from 'meteor/session';
 
 const options = ['NU KØR VI', 'NÅ KØR VI', 'NU KÖR VI', 'NÅ KÖR VI', 'NKV'];
 export default class Welcome extends React.Component {
@@ -29,7 +30,11 @@ export default class Welcome extends React.Component {
     e.preventDefault();
     console.log(e.target.value);
     if (options.indexOf(this.state.value) > -1) {
+      Session.set('client', 'visitor');
       FlowRouter.go('/kart');
+    } else if (this.state.value === 'ADMINISTRERER') {
+      Session.set('client', 'admin');
+      FlowRouter.go('/admin');
     }
   }
 
@@ -54,7 +59,6 @@ export default class Welcome extends React.Component {
             </form>
           </div>
         </div>
-        <p>{this.state.value}</p>
       </div>
     );
   }
