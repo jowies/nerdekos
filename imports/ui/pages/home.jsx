@@ -7,7 +7,6 @@ export default class Home extends React.Component {
     super(props);
     this.edges = new vis.DataSet();
     this.nodes = new vis.DataSet();
-    this.click = this.click.bind(this);
   }
 
   componentDidMount() {
@@ -53,29 +52,10 @@ export default class Home extends React.Component {
   getHeight() {
     if ((window.innerWidth
       || document.documentElement.clientWidth
-      || document.body.clientWidth) >= 840) {
-      return 64;
+      || document.body.clientWidth) <= 1024) {
+      return 56;
     }
-    return 56;
-  }
-
-  click(network, data) {
-    if (data.nodes[0]) {
-      network.focus(data.nodes[0], {
-        scale: 0.95,
-        animation: {
-          duration: 500,
-          easingFunction: 'easeInOutQuad',
-        },
-      });
-    } else {
-      network.fit({
-        animation: {
-          duration: 500,
-          easingFunction: 'easeInOutQuad',
-        },
-      });
-    }
+    return 64;
   }
 
   render() {
@@ -83,7 +63,7 @@ export default class Home extends React.Component {
       <div
         className=""
       >
-        {this.props.loading ? <p>Loading..</p> : <NodeMap height={this.getHeight()} click={this.click} nodes={this.nodes} edges={this.edges} />}
+        {this.props.loading ? <p>Loading..</p> : <NodeMap people={this.props.people} relationships={this.props.relationships} height={this.getHeight()} nodes={this.nodes} edges={this.edges} />}
       </div>
     );
   }
