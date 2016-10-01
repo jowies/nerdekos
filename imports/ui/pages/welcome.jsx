@@ -28,7 +28,6 @@ export default class Welcome extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.value);
     if (options.indexOf(this.state.value) > -1) {
       Session.set('client', 'visitor');
       FlowRouter.go('/kart');

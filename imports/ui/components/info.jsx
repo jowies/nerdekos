@@ -23,15 +23,11 @@ export default class NodeMap extends React.Component {
           <div className="info-color">
           </div>
         </div>
-
-
-
   );
   }
 }
 
 NodeMap.propTypes = {
-  people: React.PropTypes.array,
-  relationships: React.PropTypes.array,
+  info: React.PropTypes.object,
   height: React.PropTypes.number,
 };

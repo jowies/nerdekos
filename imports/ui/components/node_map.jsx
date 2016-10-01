@@ -2,7 +2,7 @@ import React from 'react';
 import vis from 'vis';
 import Loading from './loading_map.jsx';
 import Info from './info.jsx';
-import { getInfo } from '../helpers/info.js';
+import getInfo from '../helpers/info.js';
 
 export default class NodeMap extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class NodeMap extends React.Component {
         },
         maxVelocity: 146,
         solver: 'forceAtlas2Based',
-        timestep: 1.50,
+        timestep: 1.75,
         stabilization: {
           enabled: true,
           iterations: 1000,
@@ -47,6 +47,7 @@ export default class NodeMap extends React.Component {
     this.state = {
       loading: true,
       info: false,
+      focus: '',
     };
 
     this.click = this.click.bind(this);
@@ -75,13 +76,11 @@ export default class NodeMap extends React.Component {
       this.setState({
         loading: false,
       });
-      console.log('running');
     }
   }
 
   click(data) {
     if (data.nodes[0]) {
-      getInfo({ id: data.nodes[0], people: this.props.people, relationships: this.props.relationships });
       this.network.focus(data.nodes[0], {
         scale: 0.95,
         animation: {
@@ -89,7 +88,7 @@ export default class NodeMap extends React.Component {
           easingFunction: 'easeInOutQuad',
         },
       });
-      this.setState({ info: true });
+      this.setState({ info: true, focus: data.nodes[0] });
     } else {
       this.network.fit({
         animation: {
@@ -105,7 +104,8 @@ export default class NodeMap extends React.Component {
     if (this.state.loading) {
       return <Loading height={this.props.height} />;
     } else if (this.state.info) {
-      return <Info people={this.props.people} relationships={this.props.relationships} height={this.props.height} />;
+      const info = getInfo({ id: this.state.focus, people: this.props.people, relationships: this.props.relationships });
+      return <Info height={this.props.height} info={info} />;
     }
     return '';
   }
