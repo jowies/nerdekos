@@ -4,7 +4,7 @@ import { mount } from 'react-mounter';
 import HomeLayout from '../../ui/layouts/home_layout.jsx';
 import AdminLayout from '../../ui/layouts/admin_layout.jsx';
 import PublicContainer from '../../ui/containers/public_container.jsx';
-import PeopleContainer from '../../ui/containers/people_container.jsx';
+import Suggestion from '../../ui/pages/suggestion.jsx';
 import AdminContainer from '../../ui/containers/admin_container.jsx';
 import SuggestionsContainer from '../../ui/containers/suggestions_container.jsx';
 import AdminAddContainer from '../../ui/containers/admin_add_container.jsx';
@@ -57,7 +57,7 @@ FlowRouter.notFound = {
 FlowRouter.route('/suggestion', {
   triggersEnter: [goHome],
   action() {
-    mount(HomeLayout, { content: <PeopleContainer /> });
+    mount(HomeLayout, { content: <Suggestion /> });
   },
 });
 

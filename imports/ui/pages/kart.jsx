@@ -79,6 +79,7 @@ export default class Kart extends React.Component {
         this.nodes.add(node);
       }
     });
+    console.log(nextProps);
   }
 
   componentWillUnmount() {
