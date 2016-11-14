@@ -1,6 +1,7 @@
 import React from 'react';
 import { upgrade, downgrade } from '../helpers/upgrade.jsx';
 import { insert } from '../../api/suggestions/methods.js';
+import { getByFirstname } from '../../api/people/methods.js';
 import AutoComplete from '../components/auto_complete.jsx';
 
 export default class Suggestion extends React.Component {
@@ -18,6 +19,8 @@ export default class Suggestion extends React.Component {
       input2focus: false,
       error: false,
       recall: '',
+      people1: [],
+      people2: [],
     };
 
     this.handleFirstname1 = this.handleFirstname1.bind(this);
@@ -116,6 +119,18 @@ export default class Suggestion extends React.Component {
     this.setState({
       firstname1: this.toTitleCase(e.target.value),
     });
+    getByFirstname.call({ firstname: e.target.value }, (err, res) => {
+      if (err) {
+        this.setState({
+          error: true,
+        });
+      } else {
+        this.setState({
+          error: false,
+          people1: res,
+        });
+      }
+    });
   }
 
   handleLastname1(e) {
@@ -129,6 +144,18 @@ export default class Suggestion extends React.Component {
     e.preventDefault();
     this.setState({
       firstname2: this.toTitleCase(e.target.value),
+    });
+    getByFirstname.call({ firstname: e.target.value }, (err, res) => {
+      if (err) {
+        this.setState({
+          error: true,
+        });
+      } else {
+        this.setState({
+          error: false,
+          people2: res,
+        });
+      }
     });
   }
 
@@ -146,9 +173,6 @@ export default class Suggestion extends React.Component {
     });
   }
 
-  tsoTitleCase(str) {
-    return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-  }
 
   toTitleCase(str) {
     const lower = str.toLowerCase();
@@ -195,7 +219,9 @@ export default class Suggestion extends React.Component {
       insert.call(suggestion,
       (err, res) => {
         if (err) {
-          console.log(err);
+          this.setState({
+            error: true,
+          });
         } else {
           this.setState({
             recall: res,
@@ -205,6 +231,7 @@ export default class Suggestion extends React.Component {
             lastname2: '',
             radio: '',
             comment: '',
+            error: false,
           });
           this.refs.radio1.className = this.refs.radio1.className.split(' is-checked').join('');
           this.refs.radio2.className = this.refs.radio2.className.split(' is-checked').join('');
@@ -235,7 +262,7 @@ export default class Suggestion extends React.Component {
               <form className="style-5" >
                 <input value={this.state.firstname1} onChange={this.handleFirstname1} style={{ margin: '10px 0 20px 0' }} placeholder="Fornavn..." type="text" />
                 <input ref="input1" value={this.state.lastname1} onChange={this.handleLastname1} style={{ margin: '20px 0 0 0' }} placeholder="Etternavn..." type="text" />
-                {(!this.props.loading && this.state.input1focus) ? <AutoComplete clickName={this.clickLastname1} lastname={this.state.lastname1} firstname={this.state.firstname1} people={this.props.people} /> : ''}
+                {this.state.input1focus ? <AutoComplete clickName={this.clickLastname1} lastname={this.state.lastname1} firstname={this.state.firstname1} people={this.state.people1} /> : ''}
               </form>
             </div>
             <div style={{ marginTop: 20 }} >
@@ -246,7 +273,7 @@ export default class Suggestion extends React.Component {
               <form className="style-5" >
                 <input value={this.state.firstname2} onChange={this.handleFirstname2} style={{ margin: '10px 0 20px 0' }} placeholder="Fornavn..." type="text" />
                 <input ref="input2" value={this.state.lastname2} onChange={this.handleLastname2} style={{ margin: '20px 0 0 0' }} placeholder="Etternavn..." type="text" />
-                {(!this.props.loading && this.state.input2focus) ? <AutoComplete clickName={this.clickLastname2} lastname={this.state.lastname2} firstname={this.state.firstname2} people={this.props.people} /> : ''}
+                {this.state.input2focus ? <AutoComplete clickName={this.clickLastname2} lastname={this.state.lastname2} firstname={this.state.firstname2} people={this.state.people2} /> : ''}
               </form>
             </div>
             <div className="">
@@ -281,8 +308,3 @@ export default class Suggestion extends React.Component {
     );
   }
 }
-
-Suggestion.propTypes = {
-  people: React.PropTypes.array,
-  loading: React.PropTypes.bool,
-};

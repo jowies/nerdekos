@@ -13,7 +13,6 @@ export default class AutoComplete extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.firstname !== nextProps.firstname) {
-      console.log(this.state.people);
       const peopleWithFirstname = this.peopleWithFirstname(nextProps.people, nextProps.firstname);
       this.setState({
         peoplecache: peopleWithFirstname,

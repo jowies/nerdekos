@@ -21,7 +21,7 @@ export const insert = new ValidatedMethod({
         const newperson = person;
         newperson.addedBy = Meteor.userId();
         const addedperson = People.insert(newperson);
-        return addedperson._id;
+        return addedperson;
       }
       return exists._id;
     }
@@ -43,16 +43,28 @@ export const remove = new ValidatedMethod({
   },
 });
 
+export const getByFirstname = new ValidatedMethod({
+  name: 'people.getByFirstname',
+  validate: new SimpleSchema({
+    firstname: { type: String },
+  }).validator(),
+  run({ firstname }) {
+    const people = People.find({ firstname }).fetch();
+    return people;
+  },
+});
 
-const POEPLE_METHODS = _.pluck([
+
+const PEOPLE_METHODS = _.pluck([
   insert,
   remove,
+  getByFirstname,
 ], 'name');
 
 if (Meteor.isServer) {
   DDPRateLimiter.addRule({
     name(name) {
-      return _.contains(POEPLE_METHODS, name);
+      return _.contains(PEOPLE_METHODS, name);
     },
     coonnectionId() { return true; },
   }, 5, 1000);
