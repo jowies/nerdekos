@@ -4,8 +4,9 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 class PeopleCollection extends Mongo.Collection {
   insert(person, callback) {
     const newPerson = person;
-    newPerson.approvedRelationships = person.approvedRelationships || 0;
-    return super.insert(person, callback);
+    newPerson.date = person.date || new Date();
+    newPerson.relationships = [];
+    return super.insert(newPerson, callback);
   }
   remove(selector, callback) {
     return super.remove(selector, callback);
@@ -22,19 +23,21 @@ People.deny({
 });
 
 People.schema = new SimpleSchema({
-  name: { type: String },
-  class: { type: String, optional: true },
-  addedBy: { type: String, regEx: SimpleSchema.RegEx.Id, optional: true },
-  approvedRelationships: { type: Number },
+  firstname: { type: String },
+  lastname: { type: String },
+  date: { type: Date },
+  addedBy: { type: String, regEx: SimpleSchema.RegEx.Id },
+  relationships: { type: [String] },
 });
 
 People.attachSchema(People.schema);
 
 People.publicFields = {
-  name: 1,
-  class: 1,
-  addedBy: 0,
-  approvedRelationships: 1,
+  firstname: 1,
+  lastname: 1,
+  date: 1,
+  addedBy: 1,
+  relationships: 1,
 };
 
 /*

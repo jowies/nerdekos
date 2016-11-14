@@ -6,6 +6,7 @@
     "pretest": "npm run lint --silent"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.2",
     "bcrypt": "^0.8.7",
     "material-design-lite": "^1.1.3",
     "meteor-node-stubs": "~0.2.0",

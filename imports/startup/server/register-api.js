@@ -2,3 +2,8 @@ import '../../api/relationships/methods.js';
 import '../../api/relationships/server/publications.js';
 import '../../api/people/methods.js';
 import '../../api/people/server/publications.js';
+import '../../api/admins/admins.js';
+import '../../api/admins/methods.js';
+import '../../api/super_admin/methods.js';
+import '../../api/suggestions/methods.js';
+import '../../api/suggestions/server/publications.js';

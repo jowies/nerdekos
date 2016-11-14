@@ -1,2 +1,2 @@
-import './visitor.js';
+import './email.jsx';
 import './routes.jsx';

@@ -7838,11 +7838,11 @@ input.mdl-button[type="submit"] {
   height: 16px;
   margin: 0;
   cursor: pointer;
-  border: 2px solid rgba(0,0,0, 0.54);
+  border: 2px solid #f5f5f5;
   border-radius: 50%;
   z-index: 2; }
   .mdl-radio.is-checked .mdl-radio__outer-circle {
-    border: 2px solid rgb(63,81,181); }
+    border: 2px solid #D50000; }
   .mdl-radio__outer-circle fieldset[disabled] .mdl-radio,
   .mdl-radio.is-disabled .mdl-radio__outer-circle {
     border: 2px solid rgba(0,0,0, 0.26);
@@ -7866,7 +7866,7 @@ input.mdl-button[type="submit"] {
   -webkit-transform: scale3d(0, 0, 0);
           transform: scale3d(0, 0, 0);
   border-radius: 50%;
-  background: rgb(63,81,181); }
+  background: #D50000; }
   .mdl-radio.is-checked .mdl-radio__inner-circle {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); }
@@ -7897,7 +7897,7 @@ input.mdl-button[type="submit"] {
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(circle, white, black); }
   .mdl-radio__ripple-container .mdl-ripple {
-    background: rgb(63,81,181); }
+    background: #ff8a80; }
   fieldset[disabled] .mdl-radio .mdl-radio__ripple-container,
   .mdl-radio.is-disabled .mdl-radio__ripple-container {
     cursor: auto; }

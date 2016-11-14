@@ -2,10 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { People } from '../../api/people/people.js';
 import { Relationships } from '../../api/relationships/relationships.js';
-import Home from '../pages/home.jsx';
+import Kart from '../pages/kart.jsx';
 
 const PublicContainer = createContainer(() => {
-  const peopleHandle = Meteor.subscribe('people.all');
+  const peopleHandle = Meteor.subscribe('people.relevant');
   const relationshipsHandle = Meteor.subscribe('relationships.all');
   const loading = !peopleHandle.ready && !relationshipsHandle.ready;
   return {
@@ -13,7 +13,8 @@ const PublicContainer = createContainer(() => {
     connected: Meteor.status().connected,
     people: People.find().fetch(),
     relationships: Relationships.find().fetch(),
+    admin: false,
   };
-}, Home);
+}, Kart);
 
 export default PublicContainer;

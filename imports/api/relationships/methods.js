@@ -6,49 +6,47 @@ import { _ } from 'meteor/underscore';
 
 import { Relationships } from './relationships.js';
 import { People } from '../people/people.js';
+import { Suggestions } from '../suggestions/suggestions.js';
 
 export const insert = new ValidatedMethod({
   name: 'relationships.insert',
   validate: new SimpleSchema({
-    name1: { type: String },
-    name2: { type: String },
+    peopleIds: { type: [String] },
     type: { type: String },
   }).validator(),
-  run({ name1, name2, type }) {
-    let relationship;
-    let person1 = People.findOne({ name: name1 });
-    let person2 = People.findOne({ name: name2 });
-    if (!person1) {
-      person1 = People.insert({
-        name: name1,
-      });
-    } else {
-      person1 = person1._id;
-    }
-    if (!person2) {
-      person2 = People.insert({
-        name: name2,
-      });
-    } else {
-      person2 = person2._id;
+  run({ peopleIds, type }) {
+    const person1 = People.findOne(peopleIds[0]);
+    const person2 = People.findOne(peopleIds[1]);
+    
+    const relationship = Relationships.findOne({ people: { $all: [peopleIds[0], peopleIds[1]] } });
+    console.log(person1);
+    console.log(person2);
+    if (person1 && person2 && Meteor.userId()) {
+      Suggestions.update({
+        resolved: false,
+        people: {
+          $all: [
+            {
+              firstname: person1.firstname,
+              lastname: person1.lastname,
+            },
+            {
+              firstname: person2.firstname,
+              lastname: person2.lastname,
+            },
+          ],
+        },
+      }, { $set: { resolved: true } });
+      if (relationship) {
+        return Relationships.update({ _id: relationship._id }, { $set: { type } });
+      }
+      const newrelationship = Relationships.insert({ people: [person1._id, person2._id], type, addedBy: Meteor.userId() });
+      People.update(person1, { $addToSet: { relationships: newrelationship } });
+      People.update(person2, { $addToSet: { relationships: newrelationship } });
+      return newrelationship;
     }
 
-    if (Meteor.userId()) {
-      relationship = {
-        people: [person1, person2],
-        type,
-        date: new Date(),
-        approved: true,
-      };
-    } else {
-      relationship = {
-        people: [person1, person2],
-        type,
-        date: new Date(),
-        approved: false,
-      };
-    }
-    return Relationships.insert(relationship);
+    return 'error';
   },
 });
 
@@ -58,12 +56,16 @@ export const remove = new ValidatedMethod({
     relationshipId: { type: String },
   }).validator(),
   run({ relationshipId }) {
-    Relationships.remove(relationshipId);
+    const relationship = Relationships.findOne(relationshipId);
+    if (Meteor.userId) {
+      People.update({ relationships: { $in: [relationship.people[0], relationship.people[1]] } }, { $pullAll: { relationships: relationship._id } });
+      Relationships.remove(relationshipId);
+    }
   },
 });
 
 
-const COMMENTS_METHODS = _.pluck([
+const RELATIONSHIPS_METHODS = _.pluck([
   insert,
   remove,
 ], 'name');
@@ -71,7 +73,7 @@ const COMMENTS_METHODS = _.pluck([
 if (Meteor.isServer) {
   DDPRateLimiter.addRule({
     name(name) {
-      return _.contains(COMMENTS_METHODS, name);
+      return _.contains(RELATIONSHIPS_METHODS, name);
     },
     coonnectionId() { return true; },
   }, 5, 1000);

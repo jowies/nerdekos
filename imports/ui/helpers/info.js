@@ -21,14 +21,14 @@ const relationshipsPeople = ({ id, people, relationships, type }) => {
   });
 };
 
-const eskimosiblings = ({ id, people, relationships, hooks }) => {
+const eskimosiblings = ({ id, people, relationships, ligg }) => {
   const eskimos = [];
-  for (let i = 0; i < hooks.length; i++) {
+  for (let i = 0; i < ligg.length; i++) {
     const relations = relationshipsPeople({
-      id: hooks[i]._id,
+      id: ligg[i]._id,
       people,
       relationships,
-      type: 'hook',
+      type: 'ligg',
     });
     for (let j = 0; j < relations.length; j++) {
       if (relations[j]._id !== id) {
@@ -42,13 +42,15 @@ const eskimosiblings = ({ id, people, relationships, hooks }) => {
 const getInfo = ({ id, people, relationships }) => {
   const info = {};
   info.person = personById({ id, people });
-  if (info.person.approvedRelationships > 0) {
-    info.hooks = relationshipsPeople({ id, people, relationships, type: 'hook' });
+  if (info.person) {
+    info.klin = relationshipsPeople({ id, people, relationships, type: 'klin' });
     info.ligg = relationshipsPeople({ id, people, relationships, type: 'ligg' });
-    if (info.hooks.length > 0) {
-      info.eskimosiblings = eskimosiblings({ id, people, relationships, hooks: info.hooks });
+    info.eskimosiblings = [];
+    if (info.ligg.length > 0) {
+      info.eskimosiblings = eskimosiblings({ id, people, relationships, ligg: info.ligg });
     }
   }
+  console.log(info);
   return info;
 };
 

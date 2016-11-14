@@ -26,6 +26,7 @@ export default class NodeMap extends React.Component {
       edges: {
         smooth: false,
         width: 3,
+        hidden: true,
       },
       physics: {
         forceAtlas2Based: {
@@ -52,6 +53,7 @@ export default class NodeMap extends React.Component {
 
     this.click = this.click.bind(this);
     this.stabilized = this.stabilized.bind(this);
+    this.exit = this.exit.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +77,43 @@ export default class NodeMap extends React.Component {
       });
       this.setState({
         loading: false,
+      });
+      this.network.setOptions({
+        nodes: {
+          shape: 'dot',
+          scaling: {
+            min: 10,
+            max: 30,
+          },
+          size: 10,
+          font: {
+            size: 15,
+            color: '#bdbdbd',
+            face: 'courier',
+          },
+          color: '#bdbdbd',
+        },
+        edges: {
+          smooth: false,
+          width: 3,
+          hidden: false,
+        },
+        physics: {
+          forceAtlas2Based: {
+            gravitationalConstant: -26,
+            centralGravity: 0.003,
+            springLength: 50,
+            springConstant: 0.03,
+          },
+          maxVelocity: 146,
+          solver: 'forceAtlas2Based',
+          timestep: 1.75,
+          stabilization: {
+            enabled: true,
+            iterations: 1000,
+            updateInterval: 25,
+          },
+        },
       });
     }
   }
@@ -100,12 +139,18 @@ export default class NodeMap extends React.Component {
     }
   }
 
+  exit() {
+    this.setState({
+      info: false,
+    });
+  }
+
   ovarlay() {
     if (this.state.loading) {
       return <Loading height={this.props.height} />;
     } else if (this.state.info) {
       const info = getInfo({ id: this.state.focus, people: this.props.people, relationships: this.props.relationships });
-      return <Info height={this.props.height} info={info} />;
+      return <Info exit={this.exit} height={this.props.height} info={info} />;
     }
     return '';
   }
