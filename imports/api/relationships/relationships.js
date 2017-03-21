@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { People } from '../people/people.js';
 
 class RelationshipsCollection extends Mongo.Collection {
   insert(relationship, callback) {
@@ -8,6 +9,11 @@ class RelationshipsCollection extends Mongo.Collection {
     return super.insert(newRelationship, callback);
   }
   remove(selector, callback) {
+    const person = People.findOne();
+    console.log(person);
+    console.log(selector);
+    console.log(People.find({ relationships: selector }).fetch());
+    People.update({ relationships: selector }, { $pull: { relationships: selector } }, { multi: true });
     return super.remove(selector, callback);
   }
 

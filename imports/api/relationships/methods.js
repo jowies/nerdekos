@@ -17,7 +17,6 @@ export const insert = new ValidatedMethod({
   run({ peopleIds, type }) {
     const person1 = People.findOne(peopleIds[0]);
     const person2 = People.findOne(peopleIds[1]);
-    
     const relationship = Relationships.findOne({ people: { $all: [peopleIds[0], peopleIds[1]] } });
     console.log(person1);
     console.log(person2);

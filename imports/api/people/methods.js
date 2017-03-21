@@ -37,7 +37,9 @@ export const remove = new ValidatedMethod({
   run({ personId }) {
     const person = People.findOne(personId);
     if (Meteor.userId) {
-      Relationships.remove({ people: person._id });
+      person.relationships.forEach((relationship) => {
+        Relationships.remove(relationship);
+      });
       People.remove(personId);
     }
   },

@@ -11,7 +11,7 @@ export default class Info extends React.Component {
     upgrade(this.refs.exit);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     downgrade(this.refs.exit);
   }
 

@@ -21,6 +21,8 @@ export const getUsernameByToken = new ValidatedMethod({
   },
 });
 
+
+
 export const getUsername = new ValidatedMethod({
   name: 'admin.getUsername',
   validate: new SimpleSchema({

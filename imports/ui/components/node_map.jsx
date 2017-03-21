@@ -54,6 +54,7 @@ export default class NodeMap extends React.Component {
     this.click = this.click.bind(this);
     this.stabilized = this.stabilized.bind(this);
     this.exit = this.exit.bind(this);
+    this.noMove = this.noMove.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,12 @@ export default class NodeMap extends React.Component {
     this.network = new vis.Network(container, data, this.options);
     this.network.on('stabilized', this.stabilized);
     this.network.on('click', this.click);
+    window.addEventListener('touchmove', this.noMove, false);
+  }
+
+  componentWillUnmount() {
+    console.log('umounted');
+    window.removeEventListener('touchmove', this.noMove, false);
   }
 
   stabilized(params) {
@@ -137,6 +144,12 @@ export default class NodeMap extends React.Component {
       });
       this.setState({ info: false });
     }
+  }
+
+  noMove(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    window.scrollTo(0, 0);
   }
 
   exit() {

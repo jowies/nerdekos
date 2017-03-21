@@ -15,7 +15,7 @@ export default class NodeMap extends React.Component {
     upgrade(this.refs.loading);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     downgrade(this.refs.loading);
   }
 
