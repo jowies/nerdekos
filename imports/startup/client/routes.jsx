@@ -13,7 +13,6 @@ import SignIn from '../../ui/pages/sign_in.jsx';
 import SetPassword from '../../ui/pages/set_password.jsx';
 import WelcomeAdmin from '../../ui/pages/welcome_admin.jsx';
 import HeMan from '../../ui/pages/he_man.jsx';
-import SecretSanta from '../../ui/pages/secretsanta.jsx';
 import Globals from './globals.js';
 import { Meteor } from 'meteor/meteor';
 
@@ -93,11 +92,5 @@ FlowRouter.route('/set_password', {
 FlowRouter.route('/admin/welcome', {
   action() {
     mount(WelcomeAdmin);
-  },
-});
-
-FlowRouter.route('/secretsanta', {
-  action() {
-    mount(SecretSanta);
   },
 });

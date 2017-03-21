@@ -7,4 +7,3 @@ import '../../api/admins/methods.js';
 import '../../api/super_admin/methods.js';
 import '../../api/suggestions/methods.js';
 import '../../api/suggestions/server/publications.js';
-import '../../api/ss/methods.js';
